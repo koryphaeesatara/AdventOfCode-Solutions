@@ -4,6 +4,7 @@ import Day3 from "./2021/challenge/Day3";
 import Challenge from "./Challenge";
 import {readFileSync} from "fs";
 import Day4 from "./2021/challenge/Day4";
+import Day5 from "./2021/challenge/Day5";
 
 class ChallengeManager {
     static displayDay(year: number, ChallengeClazz: { new(): Challenge<any> }) {
@@ -26,7 +27,7 @@ class ChallengeManager {
 }
 
 let string = process.argv[2];
-for (const clazz of [Day1, Day2, Day3, Day4]) {
+for (const clazz of [Day1, Day2, Day3, Day4, Day5]) {
     if (clazz.name.toLowerCase() === string.toLowerCase()) {
         ChallengeManager.displayDay(2021, clazz);
         break;
