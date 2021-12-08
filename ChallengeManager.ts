@@ -7,6 +7,7 @@ import Day4 from "./2021/challenge/Day4";
 import Day5 from "./2021/challenge/Day5";
 import Day6 from "./2021/challenge/Day6";
 import Day7 from "./2021/challenge/Day7";
+import Day8 from "./2021/challenge/Day8";
 
 class ChallengeManager {
     static displayDay(year: number, ChallengeClazz: { new(): Challenge<any> }) {
@@ -29,7 +30,7 @@ class ChallengeManager {
 }
 
 let string = process.argv[2];
-for (const clazz of [Day1, Day2, Day3, Day4, Day5, Day6, Day7]) {
+for (const clazz of [Day1, Day2, Day3, Day4, Day5, Day6, Day7, Day8]) {
     if (clazz.name.toLowerCase() === string.toLowerCase()) {
         ChallengeManager.displayDay(2021, clazz);
         break;
