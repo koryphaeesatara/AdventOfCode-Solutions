@@ -28,8 +28,8 @@ export default class Day12 extends Challenge<Edges> {
 
     part1(edges: Edges): number {
         const cornersMap = this.createCornerMap(edges);
-        const routes = this.routes("start", "end", cornersMap, (routeName, next) =>
-            next !== "start" && !(routeName.match(new RegExp("," + next, "g")) && next.match(/[a-z]+/))
+        const routes = this.routes("start", "end", cornersMap,
+            (routeName, next) => (next !== "start" && !((routeName.match(new RegExp("," + next, "g"))) && next.match(/[a-z]+/)))
         );
         return routes.length;
     }
