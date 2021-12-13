@@ -12,6 +12,7 @@ import Day9 from "./2021/challenge/Day9";
 import Day10 from "./2021/challenge/Day10";
 import Day11 from "./2021/challenge/Day11";
 import Day12 from "./2021/challenge/Day12";
+import Day13 from "./2021/challenge/Day13";
 
 class ChallengeManager {
     static displayDay(year: number, ChallengeClazz: { new(): Challenge<any> }) {
@@ -32,10 +33,24 @@ class ChallengeManager {
         console.log("\n");
     }
 }
+const challengeClasses : { new(): Challenge<any> }[] = [
+    Day1,
+    Day2,
+    Day3,
+    Day4,
+    Day5,
+    Day6,
+    Day7,
+    Day8,
+    Day9,
+    Day10,
+    Day11,
+    Day12,
+    Day13
+];
 
 let string = process.argv[2];
-for (const clazz of [Day1, Day2, Day3, Day4, Day5, Day6, Day7, Day8, Day9, Day10,
-    Day11, Day12]) {
+for (const clazz of challengeClasses) {
     if (clazz.name.toLowerCase() === string.toLowerCase()) {
         ChallengeManager.displayDay(2021, clazz);
         break;
