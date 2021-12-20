@@ -19,6 +19,7 @@ import Day16 from "./2021/challenge/Day16";
 import Day17 from "./2021/challenge/Day17";
 import Day18 from "./2021/challenge/Day18";
 import Day19 from "./2021/challenge/Day19";
+import Day20 from "./2021/challenge/Day20";
 
 class ChallengeManager {
     static displayDay(year: number, ChallengeClazz: { new(): Challenge<any> }) {
@@ -58,7 +59,8 @@ const challengeClasses : { new(): Challenge<any> }[] = [
     Day16,
     Day17,
     Day18,
-    Day19
+    Day19,
+    Day20,
 ];
 
 let string = process.argv[2];
