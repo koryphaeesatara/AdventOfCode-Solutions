@@ -22,6 +22,7 @@ import Day19 from "./2021/challenge/Day19";
 import Day20 from "./2021/challenge/Day20";
 import Day21 from "./2021/challenge/Day21";
 import Day22 from "./2021/challenge/Day22";
+import Day23 from "./2021/challenge/Day23";
 
 class ChallengeManager {
     static displayDay(year: number, ChallengeClazz: { new(): Challenge<any> }) {
@@ -31,7 +32,7 @@ class ChallengeManager {
             console.log("Example of " + challengeClazz.day + ":")
             challengeClazz.solveDay(readFileSync(filePrefix + ".example.txt").toString());
         } catch (e) {
-            console.log("Error: " + e.message);
+            console.error(e);
         }
         try {
             console.log("\nRiddle of " + challengeClazz.day + ":")
@@ -65,6 +66,7 @@ const challengeClasses : { new(): Challenge<any> }[] = [
     Day20,
     Day21,
     Day22,
+    Day23,
 ];
 
 let string = process.argv[2];
