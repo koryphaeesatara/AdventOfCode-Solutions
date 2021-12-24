@@ -23,27 +23,28 @@ import Day20 from "./2021/challenge/Day20";
 import Day21 from "./2021/challenge/Day21";
 import Day22 from "./2021/challenge/Day22";
 import Day23 from "./2021/challenge/Day23";
+import Day24 from "./2021/challenge/Day24";
 
 class ChallengeManager {
     static displayDay(year: number, ChallengeClazz: { new(): Challenge<any> }) {
         let challengeClazz = new ChallengeClazz();
         let filePrefix = year + "/resources/" + challengeClazz.day;
-        try {
-            console.log("Example of " + challengeClazz.day + ":")
-            challengeClazz.solveDay(readFileSync(filePrefix + ".example.txt").toString());
-        } catch (e) {
-            console.error(e);
-        }
-        try {
-            console.log("\nRiddle of " + challengeClazz.day + ":")
-            challengeClazz.solveDay(readFileSync(filePrefix + ".riddle.txt").toString());
-        } catch (e) {
-            console.log("Error: " + e.message);
-        }
         console.log("\n");
+        for (const part of ["example", "riddle"]) {
+            try {
+                const riddle = readFileSync(filePrefix + "." + part + ".txt").toString();
+                console.log(part + " of " + challengeClazz.day + ":")
+                challengeClazz.solveDay(riddle);
+                console.log("\n");
+            } catch (e) {
+                if (e.code !== "ENOENT")
+                    console.error(e);
+            }
+        }
     }
 }
-const challengeClasses : { new(): Challenge<any> }[] = [
+
+const challengeClasses: { new(): Challenge<any> }[] = [
     Day1,
     Day2,
     Day3,
@@ -67,6 +68,7 @@ const challengeClasses : { new(): Challenge<any> }[] = [
     Day21,
     Day22,
     Day23,
+    Day24,
 ];
 
 let string = process.argv[2];
