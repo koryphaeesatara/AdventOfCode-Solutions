@@ -1,5 +1,15 @@
 import Challenge from "../../Challenge";
 
+type Crabs = number[];
+
+function sum(nums: number[]): number {
+    return nums.reduce((p, c) => p + c);
+}
+
+function min(...nums: number[]): number {
+    return nums.reduce((p, c) => p < c ? p : c);
+}
+
 export default class Day7 extends Challenge<number[]> {
     day: string = "day7";
 
@@ -9,52 +19,17 @@ export default class Day7 extends Challenge<number[]> {
             .map(e => parseInt(e));
     }
 
-
-    part1(crabs: number[]): number {
-        let calcFuelTo = function (crabs: number[], pos: number){
-            let sum = 0;
-            for (const crab of crabs) {
-                sum+=Math.abs(pos-crab);
-            }
-            return sum;
-        };
-        let pos = 1;
-        let min = calcFuelTo(crabs, 0);
-        while(true){
-            let current = calcFuelTo(crabs, pos);
-            if (current < min){
-                min = current
-            }else {
-                return min;
-            }
-            pos++;
-        }
+    part1(crabs: Crabs): number {
+        crabs = crabs.sort((a, b) => a - b);
+        const median = crabs[Math.ceil(crabs.length / 2)];
+        return sum(crabs.map(n => Math.abs(median - n)));
     }
 
-    part2(crabs: number[]): number {
-        let calcFuelTo = function (crabs: number[], pos: number){
-            let sum = 0;
-            for (const crab of crabs) {
-                let diff = Math.abs(pos-crab);
-                sum+=(diff * (diff+1))/2;
-            }
-            return sum;
-        };
-        let pos = 1;
-        let min = calcFuelTo(crabs, 0);
-        while(true){
-            let current = calcFuelTo(crabs, pos);
-            if (current < min){
-                min = current
-            }else {
-                return min;
-            }
-            pos++;
-        }
+    part2(crabs: Crabs): number {
+        crabs = crabs.sort((a, b) => a - b);
+        const avg = (crabs.reduce((p, c) => p + c) / crabs.length);
+        const calcFuel = (line) => sum(crabs.map(n => Math.abs(line - n) * (Math.abs(line - n) + 1) / 2));
+        return min(calcFuel(Math.ceil(avg)), calcFuel(Math.floor(avg)));
     }
+
 }
-/**
-
- |ai -x|
-
-*/
